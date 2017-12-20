@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <title>tab</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul, li {
+            list-style: none;
+        }
+        body {
+            padding: 100px;
+            background-color: #323232;
+            font-size: 12px;
+            font-family: "微软雅黑";
+        }
+        .tab {
+            width: 300px;
+        }
+        .tab .tab-nav {
+            height: 30px;
+        }
+        .tab .tab-nav li {
+            float: left;
+            margin-right: 5px;
+            background-color: #767676;
+            border-radius: 3px 3px 0 0;
+        }
+        .tab .tab-nav li.actived {
+            background-color: #fff;
+        }
+        .tab .tab-nav li.actived a {
+            color: #777;
+        }
+        .tab .tab-nav li a {
+            display: block;
+            height: 30px;
+            padding: 0 20px;
+            color: #fff;
+            line-height: 30px;
+            text-decoration: none;
+        }
+        .content-wrap {
+            background-color: #fff;
+            padding: 5px;
+            height: 200px;
+        }
+        .content-item {
+            height: 200px;
+            display: none;
+            position: absolute;
+        }
+        .content-item.current {
+            display: block;
+        }
+        .tab-view {
+          float: left;
+          margin-right: 50px;
+        }
+        .tab-view p {
+          color: #999;
+          margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+  <div class="tab-view">
+    <p>1，鼠标悬浮切换，无切换效果。</p>
+    <div class="tab js-tab">
+        <ul class="tab-nav">
+            <li class="actived"><a href="#">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">科技</a></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content-item current"><img width="290" height="200" src="a.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="b.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="c.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="d.jpg" \></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="tab-view">
+    <p>2，鼠标点击切换，切换效果淡入淡出，1秒自动切换。</p>
+    <div class="tab js-tab" data-config='{"triggerType": "click",
+    "effect": "fade",
+    "auto": 1000}'>
+        <ul class="tab-nav">
+            <li class="actived"><a href="#">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">科技</a></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content-item current"><img width="290" height="200" src="x.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="y.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="z.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="l.jpg" \></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="tab-view">
+    <p>3，默认显示第二个tab内容。</p>
+    <div class="tab js-tab" data-config='{
+    "invoke": 2
+      }'>
+        <ul class="tab-nav">
+            <li class="actived"><a href="#">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">科技</a></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content-item current"><img width="290" height="200" src="1.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="2.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="3.jpg" \></div>
+            <div class="content-item"><img width="290" height="200" src="4.jpg" \></div>
+        </div>
+    </div>
+
+  </div>
+
+
+    <script>
+    $(function(){
+        var Tab = function(tab) {
+            var __this__ = this
+            this.tab = tab
+            //默认配置参数
+            this.config = {
+                "triggerType": "mouseover",
+                "effect": "default",
+                "invoke": 0,
+                "auto": false,
+            }
+            if(this.getConfig()){
+                $.extend(this.config, this.getConfig())
+            }
+            console.log(this.config)
+            // 保存tab标签列表， 对应的内容列表
+            this.tabItems = this.tab.find("ul.tab-nav li")
+            this.contentItems = this.tab.find("div.content-wrap div.content-item")
+
+            // 保存配置参数
+            var config = this.config
+
+            if(config.triggerType === "click"){
+                this.tabItems.bind(config.triggerType, function(){
+                    __this__.invoke($(this))
+                })
+            }else if(config.triggerType === "mouseover" || config.triggerType != "click"){
+                this.tabItems.mouseover(function(){
+                    var self = $(this)
+                    this.timer = window.setTimeout(function(){
+                        __this__.invoke(self)
+                    }, 300)
+                }).mouseout(function(){
+                    window.clearTimeout(this.timer)
+                })
+            }
+            if(config.auto){
+                this.timer = null
+                this.loop = 0
+                this.autoPlay()
+                this.tab.hover(function(){
+                    window.clearInterval(__this__.timer)
+                }, function(){
+                    __this__.autoPlay()
+                })
+            }
+            //设置默认显示第几个tab
+            if(config.invoke>1){
+                this.invoke(this.tabItems.eq(config.invoke-1))
+            }
+        }
+        Tab.prototype = {
+            getConfig: function(){
+                var config = this.tab.attr("data-config")
+                if(config&&config!=""){
+                    return $.parseJSON(config)
+                }else{
+                    return null
+                }
+            },
+
+
+            invoke: function(currentTab){
+                var _this_ = this
+                currentTab.addClass("actived").siblings().removeClass("actived")
+                var index = currentTab.index()
+                var effect = this.config.effect
+                contentItems = this.contentItems
+                if(effect === "default" || effect != "fade"){
+                    contentItems.eq(index).addClass("current").siblings().removeClass("current")
+                }else if(effect === "fade"){
+                    contentItems.eq(index).fadeIn().siblings().fadeOut()
+                }
+                // 注意，如果配置了自动切换，把当前loop的值设置为当前tab的index
+                if(this.config.auto){
+                    this.loop = index
+                }
+            },
+            autoPlay: function(){
+                var _this_ = this,
+                    tabItems = this.tabItems,
+                    tabLength = tabItems.length,
+                    config = this.config
+
+                this.timer = window.setInterval(function(){
+                    _this_.loop+=1
+                    if(_this_.loop >= tabLength){
+                        _this_.loop = 0;
+                    }
+
+                    tabItems.eq(_this_.loop).trigger(config.triggerType)
+                }, config.auto)
+            }
+        }
+
+        Tab.init = function(tabs){
+            var _this_ = this
+            tabs.each(function(){
+                new _this_($(this))
+            })
+        }
+
+        //注册一个jquery方法
+        $.fn.extend({
+          tab: function(){
+            this.each(function(){
+              new Tab($(this))
+            })
+            return this
+          }
+        })
+
+        // Tab.init($(".js-tab"))
+        $(".js-tab").tab()
+    });
+    </script>
+</body>
+</html>
