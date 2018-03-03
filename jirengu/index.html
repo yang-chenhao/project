@@ -7,6 +7,42 @@
     <title>Demo</title>
 </head>
 <body>
-    <h1>hello, world!</h1>
+    <form action="/test" method="post">
+        <div class="name">
+            <label for="name">姓名:</label>
+            <input id="name" type="text" name="name">
+        </div>
+        <div class="password">
+            <label for="password">密码:</label>
+            <input id="password" type="text" name="password">
+        </div>
+        <div class="gender">
+            <label>性别:</label>
+            <input id="gender1" type="radio" name="gender" value="man">男
+            <input id="gender2" type="radio" name="gender" value="woman">女
+        </div>
+        <div class="love">
+            <label>取向:</label>
+            <input id="love1" type="radio" name="love" value="man">男
+            <input id="love2" type="radio" name="love" value="woman">女
+        </div>
+        <div class="hobby">
+            <label for="">爱好:</label>
+            <input type="checkbox" value="dota" name="hobby">dota
+            <input type="checkbox" value="travel" name="hobby">旅游
+            <input type="checkbox" value="pet" name="hobby">宠物
+        </div>
+        <div class="comment">
+            <label for="">评论:</label>
+            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+        </div>
+        <div class="car">
+            <label>我的car:</label>
+            <select name="car" id="car">
+                <option value="萨博">萨博</option>
+            </select>
+            <button type="submit">提交</button>
+        </div>
+    </form>
 </body>
 </html>
