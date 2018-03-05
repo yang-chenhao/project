@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>triangle</title>
+</head>
+<style>
+    .item {
+        margin-top: 20px;
+        border-width: 30px;
+        border-style: solid;
+        border-color: black;
+        width: 0;
+        height: 0;
+    }
+
+    .item-1 {
+        border-top-color: blue;
+        border-left-color: red;
+        border-bottom-color: green;
+        border-right-color: yellow; 
+    }
+
+    .item-2 {
+        border-top-color: blue;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: transparent; 
+    }
+
+    .item-3 {
+        border-top-color: transparent;
+        border-left-color: red;
+        border-bottom-color: transparent;
+        border-right-color: transparent; 
+    }
+
+    .item-4 {
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: yellow; 
+    }
+
+    .item-5 {
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: green;
+        border-right-color: transparent; 
+    }
+
+    .item-6 {
+        border-top-color: transparent;
+        border-left-color: red;
+        border-bottom-color: transparent;
+        border-right-color: transparent; 
+        transform: rotate(0.375turn);
+        position: relative;
+        left: -30px;
+        top: 20px;
+    }
+
+    .item-7 {
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: green;
+        border-right-color: transparent; 
+        transform: rotate(0.375turn);
+    }
+
+</style>
+<body>
+    <div class="item item-1"></div>
+    <div class="item item-2"></div>
+    <div class="item item-3"></div>
+    <div class="item item-4"></div>
+    <div class="item item-5"></div>
+    <div class="item item-6"></div>
+    <div class="item item-7"></div>
+</body>
+</html>
