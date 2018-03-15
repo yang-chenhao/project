@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo1 {
+            width: 200px;
+            height: 100px;
+            border: 1px solid gray;
+            position: relative;
+            margin-top: 50px;
+            z-index: 3;
+            background-color: white;
+        }
+        .demo1::before {
+            content: "";
+            border-top: 10px solid gray;
+            border-right: 10px solid gray;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            width: 0;
+            height: 0;
+            display: inline-block;
+            transform: rotateZ(-45deg);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+
+        .demo2 {
+            width: 200px;
+            height: 100px;
+            border: 1px solid gray;
+            position: relative;
+            margin-top: 50px;
+            z-index: 3;
+            background-color: white;
+        }
+        .demo2::before {
+            content: "";
+            border-top: 10px solid red;
+            border-right: 10px solid red;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            width: 0;
+            height: 0;
+            display: inline-block;
+            transform: rotateZ(0deg);
+            position: absolute;
+            top: 0;
+            left: 180px;
+        }
+
+        .demo3 {
+            width: 200px;
+            height: 100px;
+            border: 1px solid gray;
+            position: relative;
+            margin-top: 50px;
+            z-index: 3;
+            background-color: white;
+        }
+        .demo3::before {
+            content: "";
+            border-top: 1px solid gray;
+            border-right: 1px solid gray;
+            background-color: white;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            transform: rotateZ(-45deg);
+            position: absolute;
+            top: -7px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo1"></div>
+    <div class="demo2"></div>
+    <div class="demo3"></div>
+</body>
+</html>
