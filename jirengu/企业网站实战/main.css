@@ -1,0 +1,47 @@
+/* reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* common */
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.button {
+    display: inline-block;
+    background-color: #f7ba3e;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #fff;
+    padding: 5px 10px;
+    opacity: 0.8;
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+.layout {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    font: 14px/1.5 Arial;
+    background-color: #fff;
+    color: #444;
+}
