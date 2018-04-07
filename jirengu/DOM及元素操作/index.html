@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM及元素操作</title>
+    <style id="jsbin-css">
+        .box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.14);
+        }
+
+        .box.active {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>hello</h1>
+        <p>jirengu</p>
+    </div>
+    <button id="add">add</button>
+    <button id="remove">remove</button>
+    <button id="toggle1">toggle1</button>
+    <button id="toggle2">toggle1</button>
+    <script>
+        var addBtn = document.querySelector('#add')
+        var removeBtn = document.querySelector('#remove')
+        var toggle1Btn = document.querySelector('#toggle1')
+        var toggle2Btn = document.querySelector('#toggle2')
+        var boxPanel = document.querySelector('.box')
+
+        addBtn.onclick = function () {
+            boxPanel.classList.add('active')
+        }
+
+        removeBtn.onclick = function () {
+            boxPanel.classList.remove('active')
+        }
+
+        toggle1Btn.onclick = function () {
+            if (boxPanel.classList.contains('active')) {
+                boxPanel.classList.remove('active')
+            } else {
+                boxPanel.classList.add('active')
+            }
+        }
+
+        toggle2Btn.onclick = function () {
+            boxPanel.classList.toggle('active')
+        }
+    </script>
+</body>
+
+</html>
